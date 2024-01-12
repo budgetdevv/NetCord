@@ -18,7 +18,7 @@ public partial class PartySizeProperties
 
     public class PartySizePropertiesConverter : JsonConverter<PartySizeProperties>
     {
-        public override PartySizeProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override PartySizeProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, PartySizeProperties>();
 
         public override void Write(Utf8JsonWriter writer, PartySizeProperties value, JsonSerializerOptions options)
         {

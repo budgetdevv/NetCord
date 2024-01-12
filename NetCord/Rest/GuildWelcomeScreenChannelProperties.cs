@@ -25,7 +25,7 @@ public partial class GuildWelcomeScreenChannelProperties
     {
         private static readonly JsonEncodedText _emojiName = JsonEncodedText.Encode("emoji_name");
 
-        public override EmojiProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override EmojiProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, EmojiProperties?>();
 
         public override void Write(Utf8JsonWriter writer, EmojiProperties value, JsonSerializerOptions options)
         {

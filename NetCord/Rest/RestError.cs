@@ -78,7 +78,8 @@ public interface IRestErrorGroup
                     writer.WriteEndObject();
                     break;
                 default:
-                    throw new InvalidOperationException($"Invalid {nameof(IRestErrorGroup)} value.");
+                    ThrowUtils.ThrowInvalidOperationException($"Invalid {nameof(IRestErrorGroup)} value.");
+                    break;
             }
         }
     }

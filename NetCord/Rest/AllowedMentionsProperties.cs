@@ -52,7 +52,7 @@ public partial class AllowedMentionsProperties
         private static readonly JsonEncodedText _parse = JsonEncodedText.Encode("parse");
         private static readonly JsonEncodedText _repliedUser = JsonEncodedText.Encode("replied_user");
 
-        public override AllowedMentionsProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override AllowedMentionsProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, AllowedMentionsProperties>();
         public override void Write(Utf8JsonWriter writer, AllowedMentionsProperties value, JsonSerializerOptions options)
         {
             writer.WriteStartObject();

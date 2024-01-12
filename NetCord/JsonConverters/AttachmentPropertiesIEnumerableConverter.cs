@@ -12,7 +12,7 @@ public class AttachmentPropertiesIEnumerableConverter : JsonConverter<IEnumerabl
     private static readonly JsonEncodedText _description = JsonEncodedText.Encode("description");
     private static readonly JsonEncodedText _uploadedFileName = JsonEncodedText.Encode("uploaded_filename");
 
-    public override IEnumerable<AttachmentProperties>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+    public override IEnumerable<AttachmentProperties>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, IEnumerable<AttachmentProperties>>();
 
     public override void Write(Utf8JsonWriter writer, IEnumerable<AttachmentProperties> value, JsonSerializerOptions options)
     {

@@ -26,7 +26,7 @@ public abstract partial class ComponentProperties
         private static readonly JsonEncodedText _type = JsonEncodedText.Encode("type");
         private static readonly JsonEncodedText _components = JsonEncodedText.Encode("components");
 
-        public override ComponentProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override ComponentProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, ComponentProperties>();
 
         public override void Write(Utf8JsonWriter writer, ComponentProperties component, JsonSerializerOptions options)
         {
@@ -60,7 +60,8 @@ public abstract partial class ComponentProperties
                     JsonSerializer.Serialize(writer, channelMenuProperties, Serialization.Default.ChannelMenuProperties);
                     break;
                 default:
-                    throw new InvalidOperationException($"Invalid {nameof(ComponentProperties)} value.");
+                    ThrowUtils.ThrowInvalidOperationException($"Invalid {nameof(ComponentProperties)} value.");
+                    break;
             }
 
             writer.WriteEndArray();

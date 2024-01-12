@@ -55,7 +55,7 @@ public partial class ApplicationCommandOptionChoiceProperties
         private static readonly JsonEncodedText _nameLocalizations = JsonEncodedText.Encode("name_localizations");
         private static readonly JsonEncodedText _value = JsonEncodedText.Encode("value");
 
-        public override ApplicationCommandOptionChoiceProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override ApplicationCommandOptionChoiceProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, ApplicationCommandOptionChoiceProperties?>();
 
         public override void Write(Utf8JsonWriter writer, ApplicationCommandOptionChoiceProperties value, JsonSerializerOptions options)
         {

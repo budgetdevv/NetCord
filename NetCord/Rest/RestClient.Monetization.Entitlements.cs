@@ -34,7 +34,7 @@ public partial class RestClient
             {
                 PaginationDirection.After => async s => (await s.ToObjectAsync(Serialization.Default.JsonEntitlementArray).ConfigureAwait(false)).Select(e => new Entitlement(e)),
                 PaginationDirection.Before => async s => (await s.ToObjectAsync(Serialization.Default.JsonEntitlementArray).ConfigureAwait(false)).GetReversedIEnumerable().Select(e => new Entitlement(e)),
-                _ => throw new ArgumentException($"The value of '{nameof(entitlementsPaginationProperties)}.{nameof(paginationProperties.Direction)}' is invalid.", nameof(entitlementsPaginationProperties)),
+                _ => ThrowUtils.ThrowArgumentException($"The value of '{nameof(entitlementsPaginationProperties)}.{nameof(paginationProperties.Direction)}' is invalid.", nameof(entitlementsPaginationProperties)),
             },
             e => e.Id,
             HttpMethod.Get,

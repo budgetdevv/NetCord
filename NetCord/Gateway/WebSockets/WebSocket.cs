@@ -22,7 +22,7 @@ public class WebSocket : IWebSocket
     public async Task ConnectAsync(Uri uri)
     {
         if (_disposed)
-            throw new ObjectDisposedException(nameof(WebSocket));
+            ThrowUtils.ThrowObjectDisposedException(nameof(WebSocket));
         Connecting?.Invoke();
         _webSocket?.Dispose();
         await (_webSocket = new()).ConnectAsync(uri, default).ConfigureAwait(false);
@@ -100,7 +100,7 @@ public class WebSocket : IWebSocket
     private void ThrowIfInvalid()
     {
         if (_disposed)
-            throw new ObjectDisposedException(nameof(WebSocket));
+            ThrowUtils.ThrowObjectDisposedException(nameof(WebSocket));
         else if (!IsConnected)
             throw new WebSocketException("WebSocket was not connected.");
     }

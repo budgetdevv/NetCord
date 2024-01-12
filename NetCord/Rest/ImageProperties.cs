@@ -45,7 +45,7 @@ public partial struct ImageProperties
 
     public class ImagePropertiesConverter : JsonConverter<ImageProperties>
     {
-        public override ImageProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override ImageProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, ImageProperties>();
 
         public override void Write(Utf8JsonWriter writer, ImageProperties value, JsonSerializerOptions options)
         {

@@ -27,7 +27,7 @@ internal class PaginationQueryBuilder<T> where T : struct
                    {
                        PaginationDirection.Before => "before",
                        PaginationDirection.After => "after",
-                       _ => throw new ArgumentException($"The value of '{nameof(direction)}' is invalid."),
+                       _ => ThrowUtils.ThrowArgumentException<string>($"The value of '{nameof(direction)}' is invalid."),
                    })
                    .Append('=')
                    .Append(_toString(from.GetValueOrDefault()));

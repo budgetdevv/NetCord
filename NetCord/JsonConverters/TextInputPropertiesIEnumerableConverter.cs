@@ -10,7 +10,7 @@ public class TextInputPropertiesIEnumerableConverter : JsonConverter<IEnumerable
     private static readonly JsonEncodedText _type = JsonEncodedText.Encode("type");
     private static readonly JsonEncodedText _components = JsonEncodedText.Encode("components");
 
-    public override IEnumerable<TextInputProperties>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+    public override IEnumerable<TextInputProperties>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, IEnumerable<TextInputProperties>?>();
     public override void Write(Utf8JsonWriter writer, IEnumerable<TextInputProperties> value, JsonSerializerOptions options)
     {
         writer.WriteStartArray();

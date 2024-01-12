@@ -63,7 +63,7 @@ public abstract partial class ApplicationCommandProperties
 
     public class ApplicationCommandPropertiesConverter : JsonConverter<ApplicationCommandProperties>
     {
-        public override ApplicationCommandProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override ApplicationCommandProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, ApplicationCommandProperties?>();
 
         public override void Write(Utf8JsonWriter writer, ApplicationCommandProperties value, JsonSerializerOptions options)
         {
@@ -79,7 +79,7 @@ public abstract partial class ApplicationCommandProperties
                     JsonSerializer.Serialize(writer, messageCommandProperties, Serialization.Default.MessageCommandProperties);
                     break;
                 default:
-                    throw new InvalidOperationException($"Invalid {nameof(ApplicationCommandProperties)} value.");
+                    ThrowUtils.ThrowInvalidOperationException($"Invalid {nameof(ApplicationCommandProperties)} value.");
             }
         }
     }

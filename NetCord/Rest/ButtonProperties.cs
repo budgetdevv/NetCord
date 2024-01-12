@@ -76,7 +76,7 @@ public abstract partial class ButtonProperties
 
     public class MessageButtonConverter : JsonConverter<ButtonProperties>
     {
-        public override ButtonProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override ButtonProperties Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, ButtonProperties>();
 
         public override void Write(Utf8JsonWriter writer, ButtonProperties button, JsonSerializerOptions options)
         {
@@ -89,7 +89,8 @@ public abstract partial class ButtonProperties
                     JsonSerializer.Serialize(writer, linkButton, Serialization.Default.LinkButtonProperties);
                     break;
                 default:
-                    throw new InvalidOperationException($"Invalid {nameof(ButtonProperties)} value.");
+                    ThrowUtils.ThrowInvalidOperationException($"Invalid {nameof(ButtonProperties)} value.");
+                    return;
             }
         }
     }

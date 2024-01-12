@@ -30,7 +30,7 @@ public class Token
                     return id;
             }
 
-            throw new InvalidOperationException("Invalid token provided.");
+            return ThrowUtils.ThrowInvalidOperationException<ulong>("Invalid token provided.");
         }
     }
 

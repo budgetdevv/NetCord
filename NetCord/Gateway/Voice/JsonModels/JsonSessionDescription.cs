@@ -23,6 +23,6 @@ internal class JsonSessionDescription
             return result;
         }
 
-        public override void Write(Utf8JsonWriter writer, byte[] value, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override void Write(Utf8JsonWriter writer, byte[] value, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException>();
     }
 }

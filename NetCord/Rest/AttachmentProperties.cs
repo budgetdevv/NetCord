@@ -34,7 +34,7 @@ public partial class AttachmentProperties : IHttpSerializable
     protected Stream? GetStream()
     {
         if (_read)
-            throw new InvalidOperationException("The attachment has already been sent.");
+            ThrowUtils.ThrowInvalidOperationException("The attachment has already been sent.");
         else
             _read = true;
 
@@ -122,6 +122,6 @@ public partial class GoogleCloudPlatformAttachmentProperties : AttachmentPropert
 
     public override HttpContent Serialize()
     {
-        throw new NotSupportedException($"'{nameof(GoogleCloudPlatformAttachmentProperties)}' does not support HTTP serialization.");
+        return ThrowUtils.ThrowNotSupportedException<HttpContent>($"'{nameof(GoogleCloudPlatformAttachmentProperties)}' does not support HTTP serialization.");
     }
 }

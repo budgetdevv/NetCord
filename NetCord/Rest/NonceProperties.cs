@@ -25,7 +25,7 @@ public partial class NonceProperties
 
     public class NoncePropertiesConverter : JsonConverter<NonceProperties>
     {
-        public override NonceProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override NonceProperties? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => ThrowUtils.Throw<NotImplementedException, NonceProperties?>();
 
         public override void Write(Utf8JsonWriter writer, NonceProperties value, JsonSerializerOptions options)
         {

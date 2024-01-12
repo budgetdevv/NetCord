@@ -86,7 +86,7 @@ public class ShardedGatewayClient : IReadOnlyList<GatewayClient>, IDisposable
         lock (_startLock)
         {
             if (_startCancellationTokenSource is not null)
-                throw new InvalidOperationException("The client is already connected.");
+                ThrowUtils.ThrowInvalidOperationException("The client is already connected.");
 
             startCancellationTokenSource = _startCancellationTokenSource = new();
         }
@@ -109,7 +109,7 @@ public class ShardedGatewayClient : IReadOnlyList<GatewayClient>, IDisposable
             var total = startLimit.Total;
 
             if (shardCount > total)
-                throw new InvalidOperationException($"Shard count ({shardCount}) is greater than the total ({total}).");
+                ThrowUtils.ThrowInvalidOperationException($"Shard count ({shardCount}) is greater than the total ({total}).");
 
             var remaining = startLimit.Remaining;
             var now = Environment.TickCount64;
@@ -224,7 +224,7 @@ public class ShardedGatewayClient : IReadOnlyList<GatewayClient>, IDisposable
         var startCancellationTokenSource = _startCancellationTokenSource!;
         var clients = _clients;
         if (startCancellationTokenSource is null || clients is null)
-            throw new InvalidOperationException("The client is not connected.");
+            ThrowUtils.ThrowInvalidOperationException("The client is not connected.");
 
         lock (_clientsLock)
             startCancellationTokenSource.Cancel();

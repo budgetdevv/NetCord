@@ -4,7 +4,7 @@ namespace NetCord;
 
 public class AutoModerationActionMetadata : IJsonModel<JsonAutoModerationActionMetadata>
 {
-    JsonAutoModerationActionMetadata IJsonModel<JsonAutoModerationActionMetadata>.JsonModel => throw new NotImplementedException();
+    JsonAutoModerationActionMetadata IJsonModel<JsonAutoModerationActionMetadata>.JsonModel => ThrowUtils.Throw<NotImplementedException, JsonAutoModerationActionMetadata>();
     private readonly JsonAutoModerationActionMetadata _jsonModel;
 
     public AutoModerationActionMetadata(JsonAutoModerationActionMetadata jsonModel)

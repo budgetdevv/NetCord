@@ -106,7 +106,7 @@ public class AuditLogEntry : Entity, IJsonModel<JsonAuditLogEntry>
         if (TryGetChange(expression, out var value))
             return value;
 
-        throw new EntityNotFoundException();
+        return ThrowUtils.Throw<EntityNotFoundException, AuditLogChange<TValue>>();
     }
 
     /// <summary>
@@ -144,7 +144,7 @@ public class AuditLogEntry : Entity, IJsonModel<JsonAuditLogEntry>
         if (TryGetChange(expression, jsonTypeInfo, out var value))
             return value;
 
-        throw new EntityNotFoundException();
+        return ThrowUtils.Throw<EntityNotFoundException, AuditLogChange<TValue>>();
     }
 
     #region From https://github.com/dotnet/efcore/blob/27a83b9ad5f6ce7e13c6fbdec8f50a4aa63fb811/src/EFCore/Infrastructure/ExpressionExtensions.cs
@@ -155,13 +155,13 @@ public class AuditLogEntry : Entity, IJsonModel<JsonAuditLogEntry>
         where TMemberInfo : MemberInfo
     {
         if (memberAccessExpression.Parameters.Count != 1)
-            throw new ArgumentException($"Parameters.Count is {memberAccessExpression.Parameters.Count}");
+            ThrowUtils.ThrowArgumentException($"Parameters.Count is {memberAccessExpression.Parameters.Count}");
 
         var parameterExpression = memberAccessExpression.Parameters[0];
         var memberInfo = MatchSimpleMemberAccess<TMemberInfo>(parameterExpression, memberAccessExpression.Body);
 
         if (memberInfo is null)
-            throw new ArgumentException($"The expression '{nameof(memberAccessExpression)}' is not a valid member access expression. The expression should represent a simple property or field access: 't => t.MyProperty'.", nameof(memberAccessExpression));
+            ThrowUtils.ThrowArgumentException($"The expression '{nameof(memberAccessExpression)}' is not a valid member access expression. The expression should represent a simple property or field access: 't => t.MyProperty'.", nameof(memberAccessExpression));
 
         return memberInfo;
     }

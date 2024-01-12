@@ -62,7 +62,7 @@ public abstract class Interaction : ClientEntity, IInteraction
                 ApplicationCommandType.ChatInput => new SlashCommandInteraction(jsonModel, guild, sendResponseAsync, client),
                 ApplicationCommandType.User => new UserCommandInteraction(jsonModel, guild, sendResponseAsync, client),
                 ApplicationCommandType.Message => new MessageCommandInteraction(jsonModel, guild, sendResponseAsync, client),
-                _ => throw new InvalidOperationException(),
+                _ => ThrowUtils.ThrowInvalidOperationException<Interaction>(),
             },
             InteractionType.MessageComponent => jsonModel.Data!.ComponentType.GetValueOrDefault() switch
             {
@@ -72,11 +72,11 @@ public abstract class Interaction : ClientEntity, IInteraction
                 ComponentType.RoleMenu => new RoleMenuInteraction(jsonModel, guild, sendResponseAsync, client),
                 ComponentType.MentionableMenu => new MentionableMenuInteraction(jsonModel, guild, sendResponseAsync, client),
                 ComponentType.ChannelMenu => new ChannelMenuInteraction(jsonModel, guild, sendResponseAsync, client),
-                _ => throw new InvalidOperationException(),
+                _ => ThrowUtils.ThrowInvalidOperationException<Interaction>(),
             },
             InteractionType.ApplicationCommandAutocomplete => new AutocompleteInteraction(jsonModel, guild, sendResponseAsync, client),
             InteractionType.ModalSubmit => new ModalSubmitInteraction(jsonModel, guild, sendResponseAsync, client),
-            _ => throw new InvalidOperationException(),
+            _ => ThrowUtils.ThrowInvalidOperationException<Interaction>(),
         };
     }
 

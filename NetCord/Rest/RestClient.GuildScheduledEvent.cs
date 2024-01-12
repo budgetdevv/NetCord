@@ -38,7 +38,7 @@ public partial class RestClient
             {
                 PaginationDirection.After => async s => (await s.ToObjectAsync(Serialization.Default.JsonGuildScheduledEventUserArray).ConfigureAwait(false)).Select(u => new GuildScheduledEventUser(u, guildId, this)),
                 PaginationDirection.Before => async s => (await s.ToObjectAsync(Serialization.Default.JsonGuildScheduledEventUserArray).ConfigureAwait(false)).GetReversedIEnumerable().Select(u => new GuildScheduledEventUser(u, guildId, this)),
-                _ => throw new ArgumentException($"The value of '{nameof(optionalGuildUsersPaginationProperties)}.{nameof(paginationProperties.Direction)}' is invalid.", nameof(optionalGuildUsersPaginationProperties)),
+                _ => ThrowUtils.ThrowArgumentException($"The value of '{nameof(optionalGuildUsersPaginationProperties)}.{nameof(paginationProperties.Direction)}' is invalid.", nameof(optionalGuildUsersPaginationProperties)),
             },
             u => u.User.Id,
             HttpMethod.Get,
